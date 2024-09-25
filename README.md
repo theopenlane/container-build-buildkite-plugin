@@ -2,7 +2,8 @@
 
 # container-build
 
-This Buildkite plugin will build a container, today supporting Dockerfiles; you pass the plugin a context path and a tag or a set of tags
+This Buildkite plugin will build a container, today supporting Dockerfiles; you
+pass the plugin a context path and a tag or a set of tags
 
 ## Example
 
@@ -27,15 +28,18 @@ The default settings will:
 
 ### `dockerfile` (Optional, string)
 
-Path to the Dockerfile to use. If not specified, the plugin will look for a `Dockerfile` file at the git repository root
+Path to the Dockerfile to use. If not specified, the plugin will look for a
+`Dockerfile` file at the git repository root
 
 ### `context` (Optional, string)
 
-Path to the context directory to use. If not specified, the plugin will use the `.` directory as the context path
+Path to the context directory to use. If not specified, the plugin will use the
+`.` directory as the context path
 
 ### `secret-file` (Optional, string)
 
-A string like 'id=mysecret,src=secret-file' where <secret-file> is the path in the build
+A string like 'id=mysecret,src=secret-file' where <secret-file> is the path in
+the build
 
 ### `tags` (Optional, array of strings)
 
@@ -51,10 +55,19 @@ Build arguments to use when building the container
 
 e.g. `build-args: ['MEOW=kitty', 'WIZBANG=shazam']`
 
+### `platforms` (Optional, string)
+
+Set target platform(s) for build (e.g. linux/arm64). In order to use multiple in
+a single image build, the buildkite agent must be enabled for mulit-platform
+builds. See the
+[docker docs](https://docs.docker.com/build/building/multi-platform/) for more
+information.
+
 ### `push` (Optional, boolean)
 
 If `true`, the plugin will push the container to a registry. Defaults to `false`
 
 ## Developing
 
-Requires [taskfile](https://taskfile.dev/installation/) - `task lint` and `task test` to validate updates to the plugin
+Requires [taskfile](https://taskfile.dev/installation/) - `task lint` and
+`task test` to validate updates to the plugin

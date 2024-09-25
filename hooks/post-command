@@ -70,6 +70,7 @@ dockerfile=${BUILDKITE_PLUGIN_CONTAINER_BUILD_DOCKERFILE:-Dockerfile}
 context=${BUILDKITE_PLUGIN_CONTAINER_BUILD_CONTEXT:-.}
 push=${BUILDKITE_PLUGIN_CONTAINER_BUILD_PUSH:-false}
 secret_file=${BUILDKITE_PLUGIN_CONTAINER_BUILD_SECRET_FILE:-}
+platforms=${BUILDKITE_PLUGIN_CONTAINER_BUILD_PLATFORMS:-}
 
 tagsflags=()
 
@@ -118,7 +119,6 @@ if plugin_read_list_into_result BUILDKITE_PLUGIN_CONTAINER_BUILD_BUILD_ARGS ; th
   unset result
 fi
 
-
 if [[ -n "$secret_file" ]]; then
    export DOCKER_BUILDKIT=1
 fi
@@ -142,11 +142,16 @@ if [[ -n "$secret_file" ]]; then
   cmdargs+=("--secret" "${secret_file}")
 fi
 
+if [[ -n "$platforms" ]]; then
+  cmdargs+=("--platform" "${platforms}")
+fi
+
 cmdargs+=(
   "-f"
   "${dockerfile}"
   "${context}"
 )
+
 set -x
 docker "${cmdargs[@]}"
 status=$?
