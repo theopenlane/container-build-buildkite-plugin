@@ -13,7 +13,7 @@ Modify your `pipeline.yml` and add:
 steps:
   - command: ls
     plugins:
-      - theopenlane/container-build#v1.0.0:
+      - theopenlane/container-build#v1.1.0:
           tags:
           - 'theopenlane/theopenlane:latest'
 ```
