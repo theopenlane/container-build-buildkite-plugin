@@ -13,7 +13,7 @@ Modify your `pipeline.yml` and add:
 steps:
   - command: ls
     plugins:
-      - theopenlane/container-build#v1.1.0:
+      - theopenlane/container-build#v1.1.1:
           tags:
           - 'theopenlane/theopenlane:latest'
 ```
@@ -58,7 +58,7 @@ e.g. `build-args: ['MEOW=kitty', 'WIZBANG=shazam']`
 ### `platforms` (Optional, string)
 
 Set target platform(s) for build (e.g. linux/arm64). In order to use multiple in
-a single image build, the buildkite agent must be enabled for mulit-platform
+a single image build, the buildkite agent must be enabled for multi-platform
 builds. See the
 [docker docs](https://docs.docker.com/build/building/multi-platform/) for more
 information.
